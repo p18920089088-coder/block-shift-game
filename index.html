@@ -25,7 +25,7 @@
       --mint: #7ce6c0;
       --yellow: #f5cf5b;
       --radius: 8px;
-      --board-height: min(calc(100dvh - 140px), 720px);
+      --board-height: min(calc(100vh - 140px), 720px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --safe-top: env(safe-area-inset-top, 0px);
     }
@@ -684,7 +684,7 @@
       }
 
       .playfield {
-        --board-height: min(calc(100dvh - 250px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 126px) * 2), 620px);
+        --board-height: min(calc(100vh - 250px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 126px) * 2), 620px);
         flex: 0 0 auto;
         grid-template-columns: minmax(0, 1fr) 98px;
         align-items: start;
@@ -880,7 +880,7 @@
       }
 
       .playfield {
-        --board-height: min(calc(100dvh - 218px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 120px) * 2));
+        --board-height: min(calc(100vh - 218px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 120px) * 2));
       }
 
       .touch-pad {
@@ -908,6 +908,24 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
+    }
+
+    @supports (height: 100dvh) {
+      :root {
+        --board-height: min(calc(100dvh - 140px), 720px);
+      }
+
+      @media (max-width: 820px) {
+        .playfield {
+          --board-height: min(calc(100dvh - 250px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 126px) * 2), 620px);
+        }
+      }
+
+      @media (max-width: 820px) and (max-height: 680px) {
+        .playfield {
+          --board-height: min(calc(100dvh - 218px - var(--safe-top) - var(--safe-bottom)), calc((100vw - 120px) * 2));
+        }
       }
     }
   </style>
