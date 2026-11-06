@@ -519,6 +519,212 @@
       line-height: 1.7;
     }
 
+    .reward-layer {
+      position: absolute;
+      z-index: 6;
+      inset: 0;
+      padding: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(8, 13, 11, 0.84);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 150ms ease, visibility 150ms ease;
+    }
+
+    .reward-layer.is-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .reward-card {
+      position: relative;
+      width: min(100%, 286px);
+      padding: 22px 16px 18px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 207, 91, 0.48);
+      border-radius: var(--radius);
+      background: #18211e;
+      box-shadow:
+        0 6px 0 #070b0a,
+        0 20px 40px rgba(0, 0, 0, 0.42);
+      text-align: center;
+    }
+
+    .reward-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(245, 240, 230, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 240, 230, 0.045) 1px, transparent 1px);
+      background-size: 16px 16px;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+      -webkit-mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+
+    .reward-skip {
+      position: absolute;
+      z-index: 3;
+      top: 8px;
+      right: 8px;
+      min-width: 44px;
+      min-height: 28px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: rgba(23, 31, 28, 0.86);
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .reward-kicker {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 4px;
+      color: var(--yellow);
+      font: 800 9px/1.2 ui-monospace, "SFMono-Regular", Consolas, monospace;
+    }
+
+    .reward-title {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: clamp(23px, 5vw, 30px);
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .reward-copy {
+      position: relative;
+      z-index: 2;
+      margin: 5px 0 2px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    .dance-stage {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 154px;
+      margin-top: 2px;
+      display: grid;
+      place-items: end center;
+    }
+
+    .dancer {
+      position: relative;
+      z-index: 2;
+      width: 134px;
+      height: 134px;
+      overflow: visible;
+      filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.2));
+    }
+
+    .dancer-shadow {
+      fill: rgba(0, 0, 0, 0.32);
+    }
+
+    .dancer-hop {
+      animation: dancer-hop 520ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center bottom;
+    }
+
+    .dancer-arm-left {
+      animation: dancer-arm-left 520ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: right top;
+    }
+
+    .dancer-arm-right {
+      animation: dancer-arm-right 520ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: left top;
+    }
+
+    .dancer-leg-left {
+      animation: dancer-leg-left 520ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center top;
+    }
+
+    .dancer-leg-right {
+      animation: dancer-leg-right 520ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center top;
+    }
+
+    .dancer-head {
+      animation: dancer-head 1040ms ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center bottom;
+    }
+
+    @keyframes dancer-hop {
+      from { transform: translateY(2px) rotate(-2deg); }
+      to { transform: translateY(-7px) rotate(2deg); }
+    }
+
+    @keyframes dancer-arm-left {
+      from { transform: rotate(10deg); }
+      to { transform: rotate(-34deg); }
+    }
+
+    @keyframes dancer-arm-right {
+      from { transform: rotate(-34deg); }
+      to { transform: rotate(10deg); }
+    }
+
+    @keyframes dancer-leg-left {
+      from { transform: rotate(-9deg); }
+      to { transform: rotate(11deg); }
+    }
+
+    @keyframes dancer-leg-right {
+      from { transform: rotate(11deg); }
+      to { transform: rotate(-9deg); }
+    }
+
+    @keyframes dancer-head {
+      from { transform: rotate(-2deg); }
+      to { transform: rotate(2deg); }
+    }
+
+    .confetti {
+      position: absolute;
+      z-index: 1;
+      top: -12px;
+      left: var(--x);
+      width: 6px;
+      height: var(--h, 9px);
+      border-radius: 1px;
+      background: var(--color);
+      opacity: 0;
+      animation: confetti-fall var(--duration, 1.8s) linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -8px, 0) rotate(0deg);
+      }
+      12% { opacity: 1; }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift, 10px), 172px, 0) rotate(340deg);
+      }
+    }
+
     .primary-button {
       min-width: 150px;
       min-height: 48px;
@@ -763,6 +969,28 @@
         font-size: clamp(23px, 7vw, 31px);
       }
 
+      .reward-layer {
+        padding: 10px;
+      }
+
+      .reward-card {
+        width: min(100%, 224px);
+        padding: 20px 12px 13px;
+      }
+
+      .reward-title {
+        font-size: 23px;
+      }
+
+      .dance-stage {
+        height: 132px;
+      }
+
+      .dancer {
+        width: 116px;
+        height: 116px;
+      }
+
       .primary-button {
         min-width: 132px;
         min-height: 44px;
@@ -772,8 +1000,8 @@
       .touch-pad {
         flex: 0 0 auto;
         display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 6px;
+        grid-template-columns: 1fr 1fr 1.36fr 1.2fr 1fr;
+        gap: 5px;
         min-height: 78px;
         padding: 7px;
         border: 1px solid var(--line);
@@ -815,7 +1043,33 @@
       }
 
       .touch-button.rotate {
-        color: var(--mint);
+        border-color: #c4ffe9;
+        background: var(--mint);
+        box-shadow: 0 4px 0 #3cae84;
+        color: #092019;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .touch-button.rotate svg {
+        width: 26px;
+        height: 26px;
+        stroke-width: 2.2;
+      }
+
+      .touch-button[data-action="left"],
+      .touch-button[data-action="right"] {
+        border-color: rgba(245, 240, 230, 0.22);
+        background: #1c2622;
+        color: var(--ink);
+      }
+
+      .touch-button[data-action="left"] {
+        box-shadow: inset 3px 0 0 rgba(255, 112, 82, 0.62), 0 3px 0 #080c0b;
+      }
+
+      .touch-button[data-action="right"] {
+        box-shadow: inset -3px 0 0 rgba(255, 112, 82, 0.62), 0 3px 0 #080c0b;
       }
 
       .touch-button.drop {
@@ -829,6 +1083,11 @@
         transform: translateY(2px);
         box-shadow: 0 1px 0 #080c0b;
         background: var(--surface-soft);
+      }
+
+      .touch-button.rotate.is-pressed {
+        background: #62d7ae;
+        box-shadow: 0 1px 0 #3cae84;
       }
 
       .touch-button.drop.is-pressed {
@@ -1035,6 +1294,62 @@
             <p id="overlayText">消掉整行，别让方块堆到顶端。</p>
             <button class="primary-button" id="overlayButton" type="button">开始游戏</button>
           </div>
+          <div class="reward-layer" id="rewardLayer" aria-hidden="true">
+            <div class="reward-card" role="dialog" aria-modal="true" aria-labelledby="rewardTitle">
+              <button class="reward-skip" id="rewardSkip" type="button" aria-label="跳过舞蹈奖励">跳过</button>
+              <p class="reward-kicker">DANCE BREAK · BONUS</p>
+              <h2 class="reward-title" id="rewardTitle">十行达成！</h2>
+              <p class="reward-copy" id="rewardCopy">奖励时间，看它跳一段再继续。</p>
+              <div class="dance-stage" aria-hidden="true">
+                <span class="confetti" style="--x: 8%; --color: #ff7052; --delay: -0.2s; --duration: 1.65s; --drift: 18px;"></span>
+                <span class="confetti" style="--x: 18%; --color: #f5cf5b; --delay: -0.9s; --duration: 1.9s; --drift: -10px; --h: 6px;"></span>
+                <span class="confetti" style="--x: 29%; --color: #7ce6c0; --delay: -0.45s; --duration: 1.75s; --drift: 22px;"></span>
+                <span class="confetti" style="--x: 39%; --color: #79a9ff; --delay: -1.2s; --duration: 2.05s; --drift: -18px; --h: 7px;"></span>
+                <span class="confetti" style="--x: 51%; --color: #ff9b55; --delay: -0.65s; --duration: 1.6s; --drift: 14px;"></span>
+                <span class="confetti" style="--x: 61%; --color: #b895f6; --delay: -1.4s; --duration: 2.1s; --drift: -22px; --h: 6px;"></span>
+                <span class="confetti" style="--x: 72%; --color: #f5cf5b; --delay: -0.1s; --duration: 1.8s; --drift: 20px;"></span>
+                <span class="confetti" style="--x: 84%; --color: #ff7052; --delay: -1.05s; --duration: 2.0s; --drift: -12px; --h: 7px;"></span>
+                <span class="confetti" style="--x: 92%; --color: #7ce6c0; --delay: -0.32s; --duration: 1.7s; --drift: -20px;"></span>
+
+                <svg class="dancer" viewBox="0 0 160 160" role="img" aria-label="跳舞的小孩">
+                  <ellipse class="dancer-shadow" cx="80" cy="148" rx="35" ry="6"></ellipse>
+                  <g class="dancer-hop">
+                    <g class="dancer-leg-left">
+                      <path d="M73 101 66 129" fill="none" stroke="#354967" stroke-width="13" stroke-linecap="round"></path>
+                      <rect x="55" y="126" width="21" height="10" rx="5" fill="#f5cf5b"></rect>
+                    </g>
+                    <g class="dancer-leg-right">
+                      <path d="m88 101 8 28" fill="none" stroke="#354967" stroke-width="13" stroke-linecap="round"></path>
+                      <rect x="84" y="126" width="21" height="10" rx="5" fill="#f5cf5b"></rect>
+                    </g>
+                    <g class="dancer-arm-left">
+                      <path d="m64 82-18 12" fill="none" stroke="#7ce6c0" stroke-width="11" stroke-linecap="round"></path>
+                      <circle cx="43" cy="96" r="6.5" fill="#f4c8a3"></circle>
+                    </g>
+                    <g class="dancer-arm-right">
+                      <path d="m96 82 19-13" fill="none" stroke="#7ce6c0" stroke-width="11" stroke-linecap="round"></path>
+                      <circle cx="118" cy="67" r="6.5" fill="#f4c8a3"></circle>
+                    </g>
+                    <rect x="57" y="69" width="46" height="43" rx="17" fill="#7ce6c0"></rect>
+                    <path d="M72 70h16l-8 12z" fill="#effbf6"></path>
+                    <rect x="67" y="93" width="26" height="12" rx="5" fill="#ff7052"></rect>
+                    <circle cx="80" cy="98" r="2.5" fill="#f5cf5b"></circle>
+                    <g class="dancer-head">
+                      <circle cx="80" cy="49" r="26" fill="#f4c8a3"></circle>
+                      <path d="M55 48c1-19 12-28 27-28 16 0 25 10 25 27-7-4-12-10-15-15-9 8-22 12-37 16Z" fill="#293733"></path>
+                      <circle cx="55" cy="52" r="5" fill="#f4c8a3"></circle>
+                      <circle cx="105" cy="52" r="5" fill="#f4c8a3"></circle>
+                      <circle cx="71" cy="50" r="2.5" fill="#17201d"></circle>
+                      <circle cx="89" cy="50" r="2.5" fill="#17201d"></circle>
+                      <path d="M73 60c4 5 10 5 14 0" fill="none" stroke="#9b4538" stroke-width="2.6" stroke-linecap="round"></path>
+                      <circle cx="65" cy="58" r="4" fill="#eb8f80" opacity=".65"></circle>
+                      <circle cx="95" cy="58" r="4" fill="#eb8f80" opacity=".65"></circle>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1061,25 +1376,21 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
         <span>左移</span>
       </button>
-      <button class="touch-button" data-action="right" type="button" aria-label="向右移动">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-        <span>右移</span>
+      <button class="touch-button" data-action="hold" type="button" aria-label="暂存方块">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M6 7v11h12V7"></path><path d="M9 3h6l2 4H7z"></path></svg>
+        <span>暂存</span>
       </button>
       <button class="touch-button rotate" data-action="rotate" type="button" aria-label="顺时针旋转">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg>
         <span>旋转</span>
       </button>
-      <button class="touch-button" data-action="soft" type="button" aria-label="向下软降">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-        <span>下移</span>
-      </button>
       <button class="touch-button drop" data-action="drop" type="button" aria-label="直接落底">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v13"></path><path d="m7 11 5 5 5-5"></path><path d="M5 21h14"></path></svg>
         <span>落下</span>
       </button>
-      <button class="touch-button" data-action="hold" type="button" aria-label="暂存方块">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M6 7v11h12V7"></path><path d="M9 3h6l2 4H7z"></path></svg>
-        <span>暂存</span>
+      <button class="touch-button" data-action="right" type="button" aria-label="向右移动">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        <span>右移</span>
       </button>
     </div>
 
@@ -1102,6 +1413,8 @@
       const ARR_DELAY = 38;
       const SOFT_DROP_DELAY = 42;
       const CLEAR_ANIMATION = 180;
+      const REWARD_LINE_STEP = 10;
+      const REWARD_DURATION = 3200;
       const BEST_KEY = "blockShiftBest";
       const SOUND_KEY = "blockShiftSound";
 
@@ -1162,6 +1475,10 @@
       const overlayTag = document.getElementById("overlayTag");
       const overlayTitle = document.getElementById("overlayTitle");
       const overlayText = document.getElementById("overlayText");
+      const rewardLayer = document.getElementById("rewardLayer");
+      const rewardTitle = document.getElementById("rewardTitle");
+      const rewardCopy = document.getElementById("rewardCopy");
+      const rewardSkip = document.getElementById("rewardSkip");
       const pauseButton = document.getElementById("pauseButton");
       const restartButton = document.getElementById("restartButton");
       const soundButton = document.getElementById("soundButton");
@@ -1249,7 +1566,9 @@
           lockResets: 0,
           clearingRows: [],
           clearTimer: 0,
-          pendingClearCount: 0
+          pendingClearCount: 0,
+          rewardTimer: 0,
+          rewardStep: 0
         };
       }
 
@@ -1501,6 +1820,8 @@
       function finishLineClear() {
         const count = game.pendingClearCount;
         const gained = [0, 100, 300, 500, 800][count] * game.level;
+        const previousLines = game.lines;
+        const previousRewardStep = Math.floor(previousLines / REWARD_LINE_STEP);
         const rowsToRemove = new Set(game.clearingRows);
         game.board = game.board.filter((_, index) => !rowsToRemove.has(index));
         while (game.board.length < ROWS) {
@@ -1532,6 +1853,11 @@
           game.state = "playing";
         }
         updateStatus();
+
+        const nextRewardStep = Math.floor(game.lines / REWARD_LINE_STEP);
+        if (game.state === "playing" && nextRewardStep > previousRewardStep) {
+          showDanceReward(nextRewardStep * REWARD_LINE_STEP);
+        }
       }
 
       function startNewGame() {
@@ -1554,7 +1880,10 @@
         game.clearingRows = [];
         game.clearTimer = 0;
         game.pendingClearCount = 0;
+        game.rewardTimer = 0;
+        game.rewardStep = 0;
         game.current = null;
+        hideDanceReward();
         fillQueue();
         spawnNextPiece();
         updateAllPanels();
@@ -1580,6 +1909,7 @@
         game.state = "gameover";
         game.current = null;
         resetInput();
+        hideDanceReward();
         if (game.score > game.best) {
           game.best = game.score;
           saveBest(game.best);
@@ -1642,6 +1972,39 @@
 
       function hideOverlay() {
         overlay.classList.add("is-hidden");
+      }
+
+      function showDanceReward(lines) {
+        if (!game.current) return;
+        game.state = "reward";
+        game.rewardTimer = REWARD_DURATION;
+        game.rewardStep = lines;
+        resetInput();
+        hideOverlay();
+        rewardTitle.textContent = lines === 10 ? "十行达成！" : `${lines} 行达成！`;
+        rewardCopy.textContent = lines === 10
+          ? "跳舞小孩来庆祝，看看表演再继续。"
+          : "又解锁一段舞蹈，节奏继续。";
+        rewardLayer.classList.add("is-visible");
+        rewardLayer.setAttribute("aria-hidden", "false");
+        updateStatus(`${lines} 行达成`);
+        playSound("reward");
+        vibrate([14, 28, 16, 28, 36]);
+        announce(`${lines} 行达成，获得舞蹈奖励`);
+      }
+
+      function finishDanceReward(skipped = false) {
+        if (game.state !== "reward") return;
+        game.rewardTimer = 0;
+        game.state = "playing";
+        hideDanceReward();
+        updateStatus(skipped ? "继续叠放" : "节奏继续");
+        if (skipped) playSound("resume");
+      }
+
+      function hideDanceReward() {
+        rewardLayer.classList.remove("is-visible");
+        rewardLayer.setAttribute("aria-hidden", "true");
       }
 
       function showEvent(message) {
@@ -1729,6 +2092,14 @@
           game.clearTimer -= deltaMs;
           if (game.clearTimer <= 0) {
             finishLineClear();
+          }
+          return;
+        }
+
+        if (game.state === "reward") {
+          game.rewardTimer -= deltaMs;
+          if (game.rewardTimer <= 0) {
+            finishDanceReward();
           }
           return;
         }
@@ -2157,6 +2528,7 @@
           clear: [[330, 0.08, "triangle", 0.04], [440, 0.11, "triangle", 0.035]],
           tetris: [[330, 0.08, "triangle", 0.045], [440, 0.08, "triangle", 0.04], [660, 0.15, "triangle", 0.04]],
           level: [[440, 0.07, "sine", 0.04], [660, 0.12, "sine", 0.035]],
+          reward: [[392, 0.08, "triangle", 0.04], [523, 0.08, "triangle", 0.038], [659, 0.1, "triangle", 0.036], [784, 0.18, "sine", 0.032]],
           start: [[220, 0.06, "triangle", 0.035], [330, 0.08, "triangle", 0.03]],
           resume: [[280, 0.045, "sine", 0.025]],
           gameover: [[220, 0.13, "triangle", 0.04], [165, 0.16, "triangle", 0.035], [110, 0.2, "sine", 0.03]]
@@ -2289,6 +2661,7 @@
       });
 
       overlayButton.addEventListener("click", handleOverlayAction);
+      rewardSkip.addEventListener("click", () => finishDanceReward(true));
       pauseButton.addEventListener("click", togglePause);
       restartButton.addEventListener("click", startNewGame);
       soundButton.addEventListener("click", toggleSound);
